@@ -12,6 +12,7 @@ def get_venv_python_version(path: Path) -> Version:
     """
     section_stub_name = 'section_stub'
     with open(path / "pyvenv.cfg", 'r') as f:
+        # Patch for venv cfg file missing section headers
         config_string = '[' + section_stub_name + ']\n' + f.read()
 
     config = configparser.ConfigParser()
