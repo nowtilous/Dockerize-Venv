@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
 
-from venv_py_props import get_venv_python_version
+from venv_py_props import get_venv_python_version, collect_pip_dependencies
 
 
 def main():
@@ -12,7 +12,8 @@ def main():
         raise NotADirectoryError("Given path is invalid")
 
     venv_py_version = get_venv_python_version(venv_path)
-
+    dependencies = collect_pip_dependencies(venv_path)
+    print(dependencies)
 
 def parse_args():
     parser = argparse.ArgumentParser()
