@@ -13,7 +13,8 @@ def main():
 
     venv_py_version = get_venv_python_version(venv_path)
     dependencies = collect_pip_dependencies(venv_path)
-    print(dependencies)
+    print("Python version: {}\nDependencies:\n{}\n".format(venv_py_version, dependencies))
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
