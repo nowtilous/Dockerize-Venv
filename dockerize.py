@@ -13,6 +13,8 @@ def main():
 
     venv_py_version = get_venv_python_version(venv_path)
     dependencies = collect_pip_dependencies(venv_path)
+    pip_ini = venv_path / 'pip.ini' if (venv_path / 'pip.ini').exists() else None
+
     print("Python version: {}\nDependencies:\n{}\n".format(venv_py_version, dependencies))
 
 
