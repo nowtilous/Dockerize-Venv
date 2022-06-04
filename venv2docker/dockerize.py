@@ -3,14 +3,14 @@ import os
 import shutil
 from pathlib import Path
 
-from venv_py_props import get_venv_python_version, collect_pip_dependencies
+from venv2docker.venv_py_props import get_venv_python_version, collect_pip_dependencies
 
 
 def main():
     args = parse_args()
-    venv_path = Path(args.path)
-    if not venv_path.is_dir():
+    if not os.path.isdir(args.path):
         raise NotADirectoryError("Given path is invalid")
+    venv_path = Path(args.path)
     output_path = venv_path / 'docker'
     if not os.path.exists(output_path):
         os.mkdir(output_path)
