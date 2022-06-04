@@ -3,13 +3,16 @@ import os
 import shutil
 from pathlib import Path
 
+from venv2docker.exceptions import InvalidVirtualEnvironmentPath
 from venv2docker.venv_py_props import get_venv_python_version, collect_pip_dependencies
 
 
 def main():
     args = parse_args()
-    if not os.path.isdir(args.path):
-        raise NotADirectoryError("Given path is invalid")
+    if not os.path.isdir(args.path) or not os.path.isdir(Path(args.path) / 'Scripts') \
+            or not os.path.isdir(Path(args.path) / 'Lib'):
+        raise InvalidVirtualEnvironmentPath()
+
     venv_path = Path(args.path)
     output_path = venv_path / 'docker'
     if not os.path.exists(output_path):
